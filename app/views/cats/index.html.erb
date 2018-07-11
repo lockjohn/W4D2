@@ -1,0 +1,19 @@
+<h1> 
+ALL THE CATS
+</h1>
+
+<ul>
+  <% @cats.each do |cat| %>
+  <li>
+    <ul>
+      <li> <%= cat.name %> </li>
+      <li> <%= cat.age %> </li>
+      <li> <%= cat.color %> </li>
+      <li> <%= cat.sex %> </li>
+      <li> <%= cat.description %> </li>
+      <li><%= link_to "Cats Show page", cat_url(cat) %></li>
+    </ul>
+  </li>
+  <% end %>
+</ul>
+  

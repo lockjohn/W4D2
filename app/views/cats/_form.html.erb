@@ -1,0 +1,43 @@
+<% if action == :new
+    action_url = cats_url
+  else
+    action_url = cat_url(@cats)
+  end
+  %>
+  
+  <form action="<%=action_url%>" method="post">
+    <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+    
+    <% if action == :edit %>
+    <input type="hidden" name="_method" value="PATCH">
+  <% end %>
+    <label for="name">
+      name
+      <input id="name" type="text" name="cat[name]" value="<%=@cats.name%>">
+    </label>
+    <label for="birth_date">
+      Birthday:
+      <input id="birth_date" type="date" name="cat[birth_date]" value="<%=@cats.birth_date%>">
+    </label>
+    <label for="color">
+      color
+      
+      <select id="color" name="cat[color]">
+      <option value="blank" disabled="true" selected="true">Select a Color</option>
+            <% Cat::COLORS.each do |color| %>
+              <option value="<%=color%>">  <%= color %> </option>
+              <% end %>
+            </select>
+    </label>
+    <label for="sex">
+      sex
+      M<input id="sex" type="radio" name="cat[sex]" value="M" checked>
+      F<input id="sex" type="radio" name="cat[sex]" value="F">
+    </label>
+    <label for="description">
+      description
+      <textarea id="description" name="cat[description]" value="<%=@cats.description%>"></textarea>
+    </label>
+    <input type="submit" value="<%=action==:new ? 'Create Cat Profile' : 'Update Cat Profile'%>">
+    
+  </form>
